@@ -2,10 +2,11 @@
 
 #include "signup.h"
 #include <iostream>
+#include <stdio.h>
 
 using namespace std;
 
-Signup::Signup(UserRepository *userlist, ifstream *fin, ofstream *fout)
+Signup::Signup(UserRepository *userlist, FILE *fin, FILE *fout)
 {
 	// collection class 및 file stream 객체 초기화
 	this->userlist = userlist;
@@ -35,7 +36,8 @@ SignupUI::SignupUI(Signup *control)
 void SignupUI::completeSignup()
 {
 	this->signupControl->getFin() >> this->name >> this->SID >> this->ID >> this->PW;
+	fscanf(this->signupControl->getFin, "%s %d %s %s", )
 
-	this->signupControl->createNewUser();
+		this->signupControl->createNewUser();
 	this->signupControl->getFout() << "> " << this->name << this->SID << this->ID << this->PW << endl;
 }

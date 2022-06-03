@@ -1,4 +1,4 @@
-// Çì´õ ¼±¾ð
+// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 #include "user.h"
 #include "signup.h"
@@ -10,95 +10,73 @@
 #include <fstream>
 #include <iostream>
 
-
 using namespace std;
 
-// »ó¼ö ¼±¾ð
+// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define MAX_STRING 32
 #define INPUT_FILE_NAME "input.txt"
 #define OUTPUT_FILE_NAME "output.txt"
 
-// ÇÔ¼ö ¼±¾ð
+// ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 void doTask();
 
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+FILE *in_fp, *out_fp;
 
-// º¯¼ö ¼±¾ð
-FILE* in_fp, * out_fp;
-
-// ÃÖ»óÀ§¿¡¼­ °¢ Å¬·¡½º¸¦ vector·Î ¼±¾ðÇØ¼­ °¡Áö°í ÀÖ´Â´Ù (repository)
-// CRUD°¡ ÀÏ¾î³ª´Â µ¿ÀÛÀº control class¿¡ ÇØ´ç repository ·¹ÆÛ·±½º¸¦ Àü´ÞÇØ¼­
-// ¿øÇÏ´Â object Ã£À» ¼ö ÀÖµµ·Ï ÇÑ´Ù
-
+// ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ vectorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â´ï¿½ (repository)
+// CRUDï¿½ï¿½ ï¿½Ï¾î³ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ control classï¿½ï¿½ ï¿½Ø´ï¿½ repository ï¿½ï¿½ï¿½Û·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½
+// ï¿½ï¿½ï¿½Ï´ï¿½ object Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½
 
 int main()
 {
-	// ÆÄÀÏ ÀÔÃâ·ÂÀ» À§ÇÑ ÃÊ±âÈ­
-	//FILE* in_fp = fopen(INPUT_FILE_NAME, "r+");
-	//FILE* out_fp = fopen(OUTPUT_FILE_NAME, "w+");
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+	FILE *in_fp = fopen(INPUT_FILE_NAME, "r+");
+	FILE *out_fp = fopen(OUTPUT_FILE_NAME, "w+");
 
-	ifstream fin;
-	ofstream fout;
-
-	//fin.open(INPUT_FILE_NAME);
-	//fout.open(OUTPUT_FILE_NAME);
-
-	doTask();
-
-	//fin.close();
-	//fout.close();
-
-
+	doTask(in_fp, out_fp);
 
 	return 0;
 }
 
-
-
-
-
-
-void doTask() {
+void doTask(FILE *fin, FILE *fout)
+{
 	// entity class repository
-	UserRepository* userlist = new UserRepository();
+	UserRepository *userlist = new UserRepository();
 
-	// ¸Þ´º ÆÄ½ÌÀ» À§ÇÑ level ±¸ºÐÀ» À§ÇÑ º¯¼ö
+	// ï¿½Þ´ï¿½ ï¿½Ä½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ level ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	int menu_level_1 = 0, menu_level_2 = 0;
 	int is_program_exit = 0;
 
-	while (!is_program_exit) {
-		// ÀÔ·ÂÆÄÀÏ¿¡¼­ ¸Þ´º ¼ýÀÚ 2°³¸¦ ÀÐ±â
+	while (!is_program_exit)
+	{
+		// ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½
 		scanf_s("%d %d", &menu_level_1, &menu_level_2);
 
-
-		// ¸Þ´º ±¸ºÐ ¹× ÇØ´ç ¿¬»ê ¼öÇà
-		switch (menu_level_1) {
+		// ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		switch (menu_level_1)
+		{
 		case 1:
 
-			switch (menu_level_2) {
-			case 1:   // "1.1. È¸¿ø°¡ÀÔ¡° ¸Þ´º ºÎºÐ
-
-				new Signup(userlist);
-
+			switch (menu_level_2)
+			{
+			case 1:
+				new Signup(userlist, fin, fout);
 				break;
 
+			case 2:
+				new WithdrawAccount(userlist);
 			}
 
 		case 7:
 
-			switch (menu_level_2) {
-			case 1:   // "6.1. Á¾·á¡° ¸Þ´º ºÎºÐ
-
-
+			switch (menu_level_2)
+			{
+			case 1: // "6.1. ï¿½ï¿½ï¿½á¡° ï¿½Þ´ï¿½ ï¿½Îºï¿½
 
 				is_program_exit = 1;
-				break;;
-
+				break;
+				;
 			}
-
-
-
-
-
 
 			return;
 		}
