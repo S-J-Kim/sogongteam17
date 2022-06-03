@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include "product.h"
 
 class GetProductList;
@@ -19,8 +19,11 @@ private:
 	GetProductListUI* gplUI;
 	ProductCollection* productList;
 
+	ifstream *fin;
+	ofstream *fout;
+
 public:
-	GetProductList(ProductCollection*);
+	GetProductList(ProductCollection*, ifstream * if, ofstream * of);
 	ProductCollection* getProductCollection() { return this->productList; }
 	Product* getMyProductList();
 
