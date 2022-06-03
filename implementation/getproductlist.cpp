@@ -12,6 +12,11 @@ void GetProductListUI::getMyProductList(){
 	
 }
 
+GetProductList(ProductCollection*, ifstream * if, ofstream *of){
+	this->fin = if;
+	this->fout = of;
+}
+
 GetProductList::GetProductList(ProductCollection* productList){
 	this->productList = productList;
 	this->gplUI = new GetProductListUI(this);

@@ -6,12 +6,6 @@
 
 using namespace std;
 
-class Purchase
-{
-public:
-	void createOrder(string userId, string sellerId, string productName, ProductCollection *pc, OrderCollection *oc);
-};
-
 class OrderCollection
 {
 private:
