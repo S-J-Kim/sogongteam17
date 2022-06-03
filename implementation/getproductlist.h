@@ -5,26 +5,27 @@
 class GetProductList;
 class ProductCollection;
 
-class GetProductListUI{
+class GetProductListUI
+{
 private:
-	GetProductList* getProductListControl;
+	GetProductList *getProductListControl;
 
 public:
-	GetProductListUI(GetProductList*);
+	GetProductListUI(GetProductList *);
 	void getMyProductList();
 };
 
-class GetProductList {
+class GetProductList
+{
 private:
-	GetProductListUI* gplUI;
-	ProductCollection* productList;
+	GetProductListUI *gplUI;
+	ProductCollection *productList;
 
 	ifstream *fin;
 	ofstream *fout;
 
 public:
-	GetProductList(ProductCollection*, ifstream * if, ofstream * of);
-	ProductCollection* getProductCollection() { return this->productList; }
-	Product* getMyProductList();
-
+	GetProductList(ProductCollection *);
+	ProductCollection *getProductCollection() { return this->productList; }
+	Product *getMyProductList();
 };

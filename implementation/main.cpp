@@ -3,6 +3,10 @@
 #include "user.h"
 #include "signup.h"
 #include "withdraw.h"
+#include "login.h"
+#include "logout.h"
+#include "createproduct.h"
+#include "getproductlist.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -42,6 +46,7 @@ void doTask(FILE *fin, FILE *fout)
 {
 	// entity class repository
 	UserRepository *userlist = new UserRepository();
+	ProductCollection *productlist = new ProductCollection();
 
 	// �޴� �Ľ��� ���� level ������ ���� ����
 	int menu_level_1 = 0, menu_level_2 = 0;
@@ -66,6 +71,34 @@ void doTask(FILE *fin, FILE *fout)
 			case 2:
 				new WithdrawAccount(userlist);
 			}
+
+			break;
+		case 2:
+
+			switch (menu_level_2)
+			{
+			case 1:
+				new Login(userlist);
+				break;
+
+			case 2:
+				new Logout(userlist);
+			}
+
+			break;
+		case 3:
+
+			switch (menu_level_2)
+			{
+			case 1:
+				new CreateProduct(productlist);
+				break;
+
+			case 2:
+				new GetProductList(productlist);
+			}
+
+			break;
 
 		case 7:
 
